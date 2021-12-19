@@ -1,0 +1,7 @@
+.errorlist{/*burdaki errorlist classi djangodaki defaultdaki class deyeri olarag gelir xetalari gostermek ucun */
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+    color: #d63031;
+    font-weight: bold;
+}
