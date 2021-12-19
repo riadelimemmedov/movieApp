@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<!-- Burda yazdiginiz block adlari ile basede qeyd ettiyiniz block adlari eyni olmalidir UNUTMA bunu eyni olmalidir her iki yerde block adlari -->
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/slick/slick.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/slick/slick-theme.min.css' %}" />
+{% endblock css %}
+
+
+{% block title %}Index Page{% endblock title %}
+
+
+{% block content %}
+<div id="wrapper">
+    {% include "sidebar.html" %}
+
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <div id="content">
+
+            {% include "navbar.html" %}
+            <div class="container-fluid">
+                {% include "partials/profiletabbar.html" %}
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3">
+                        {% include "partials/profile-menu.html" %}
+                    </div>
+                    <div class="col-xl-9 col-lg-9">
+                        <div class="bg-white p-3 widget shadow rounded mb-4">
+                            <div id="sidebar-1-1">
+                                <div class=" d-sm-flex align-items-center justify-content-between mb-3">
+                                    <h1 class="h5 mb-0 text-gray-900">Profile</h1>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <form action="{% url 'profile' %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            {{user_form.as_p}}
+                                            {{profile_form.as_p}}
+                                            <button type="submit" class="btn btn-primary">Kaydet</button><!-- eger form icinde buton yazirsansa ve POST request atirsamnsa form ile bu butonun type mutleq sekilde submit olmalidir-->
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+
+        {% include 'footer.html' %}
+
+    </div>
+
+</div>
+
+{% endblock content %}
+
+
+{% block scripts %}
+    <script>
+        document.querySelectorAll('#sidebar-1 .nav-link')[0].classList.add('active')
+    </script>
+{% endblock scripts %}

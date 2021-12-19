@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<!-- Burda yazdiginiz block adlari ile basede qeyd ettiyiniz block adlari eyni olmalidir UNUTMA bunu eyni olmalidir her iki yerde block adlari -->
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/slick/slick.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/slick/slick-theme.min.css' %}" />
+{% endblock css %}
+
+
+{% block title %}Index Page{% endblock title %}
+
+
+{% block content %}
+<div id="wrapper">
+    {% include "sidebar.html" %}
+
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <div id="content">
+
+            {% include "navbar.html" %}
+
+
+            <div class="container-fluid">
+
+                {% include "slider.html" %}
+
+                <div class="d-sm-flex align-items-center justify-content-between mt-4 mb-3">
+                    <h1 class="h5 mb-0 text-gray-900">Movies</h1>
+                    <a href="#" class="d-none d-sm-inline-block text-xs">View All<i class="fas fa-eye fa-sm"></i></a>
+                </div>
+
+                <div class="row">
+                    {% for movie in movies %}
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            {% include "movie.html" %}
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+        </div>
+
+        {% include 'footer.html' %}
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+{% endblock content %}
+
+
+{% block scripts %}
+{% endblock scripts %}

@@ -1,0 +1,20 @@
+{% load static %}
+{% load custom_tags %}
+
+{% for comment in comments_all %}
+<div class="media mb-4">
+    <img class="d-flex mr-3 rounded-circle" src="{{comment.profile}}" alt="" />
+    <div class="media-body">
+        <div class="mt-0 mb-1">
+            <span class="h6 mr-2 font-weight-bold text-gray-900">{{comment.full_name}}</span>
+            <span><i class="fa fa-calendar"></i> {{comment.date_comments|date:'F, d, Y'}}</span>
+            <div class="stars-rating float-right">
+                {{comment.rating|show_rating|safe}}<!--yeni her bir commentden gelen rating deyerini show_rating funksiyana gonderirirem comment.rating ise show_rating funksiyanin parametresidir ele-->
+            </div>
+        </div>
+        <p>
+            {{comment.text}}.
+        </p>
+    </div>
+</div><!--shift+tab ile geriye vere bilirsen indenti-->
+{% endfor %}
