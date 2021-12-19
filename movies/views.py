@@ -6,7 +6,7 @@ from .models import *
 # Create your views here.
 
 def index(request):
-    movies = Movie.objects.filter(is_active=True,is_active_home=True)#True olanlari filterle,ve hemin filterden True olarag kecenleri html seyfesine gonder
+    movies = Movie.objects.filter(is_active=True,is_active_home=True)
     
     context = {
         'movies': movies
@@ -23,10 +23,10 @@ def movies(request):
 
 @login_required(login_url='login')
 def movie_details(request,slug):
-    movie_detail_slug = get_object_or_404(Movie,slug=slug)#Burda ele slug ile detail elemeyimdeki sebeb sluga databasede unique=True vermisen yeni tek ola biler id kimi        
-    genres = movie_detail_slug.genres.all()#yeni aldigim film icindeki genresderin hamsini al 
-    peoples = movie_detail_slug.people.all()#yeni hemin sluglu film icindeki butun peoplellari mene getir,ManyToManyde objects sozu yoxdur tanimir yeni
-    videos = movie_detail_slug.video_set.all()#ve ya related_name veribde query yaza bilersen Videonu tapmaga gore
+    movie_detail_slug = get_object_or_404(Movie,slug=slug)        
+    genres = movie_detail_slug.genres.all()
+    peoples = movie_detail_slug.people.all()
+    videos = movie_detail_slug.video_set.all()
     # return HttpResponse(f"Detail Page with film slug {slug}")
     
     #?Yorum Yapilmasi
@@ -34,7 +34,7 @@ def movie_details(request,slug):
         comment_form = CommentForm(request.POST or None)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
-            comment.movie = movie_detail_slug#yeni formdaki movie deyerine gonderiyimiz sluglu movieni gonderirsenki hemin sluglu movie yen gondersin yorumu
+            comment.movie = movie_detail_slug
             comment.save()
             return redirect(reverse('moviedetail',kwargs={'slug':slug}))
     else:
@@ -43,13 +43,13 @@ def movie_details(request,slug):
     context = {
         'movie_detail_slug':movie_detail_slug,
         'genres':genres,
-        'peoples': peoples,#key deyerini cagir html da yeni string icinde olan deyeri cagirki sene hemin dedyik key deyerine uygun bir value dondersin
+        'peoples': peoples,
         'videos':videos,
         'comment_form':comment_form,
         'comments_all':movie_detail_slug.yorumlar.all()
     }
     
-    return render(request,'movies/movie-detail.html',context)#html  syefesi dicotnaryde key deyrine baxir yeni html e gonderende ad kimi dictonarynin key deyerini gonderin,key deyerini donderki sene hemin key e uygun bit deyer dondersin html seyfesi
+    return render(request,'movies/movie-detail.html',context)
 
 
     

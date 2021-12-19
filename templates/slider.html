@@ -2,10 +2,10 @@
 
 <div class="osahan-slider">
     {% for slide in sliders %}
-        <div class="osahan-slider-item">
-            <a href="{% url 'moviedetail' slide.slug %}">
-                <img src="{{slide.image_name.url}}" class="img-fluid rounded" alt="">
-            </a>
-        </div>
+    <div class="osahan-slider-item">
+        <a href="{% url 'moviedetail' slide.slug %}">
+            <img src="{{slide.image_name.url}}" class="img-fluid rounded" alt="">
+        </a>
+    </div>
     {% endfor %}
 </div>

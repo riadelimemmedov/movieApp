@@ -20,19 +20,18 @@ def loginView(request):
             remember_me = form.cleaned_data.get('remember_me')
             #!Burda verilen email uygun username tapmaliyig mutleqkki giris edende email ilede girmek mumkun olsun
             
-            #if (User.objects.filter(email=email).exists()):exists() ancag filter metodu ile isleyir yeni bir yigin databaseni filterleyib gonderilen sorguya nezeren bele bir deyerin olub olmamasini yoxlayir exists() true ve ya false deyer geri donur
             username = User.objects.get(email=email).username
             user = authenticate(request,username=username,password=password)
             
-            if user is not None:#eger bele bir istifadeci varsa login ol
+            if user is not None:
                 login(request,user)
-                if not remember_me:#eger false dursa yeni remember me if islesin
+                if not remember_me:
                     request.session.set_expiry(0)
-                    request.session.modified = True#yeni bildirekk deyisiklik etmisik
+                    request.session.modified = True
                 return redirect('index') 
             else:
                 form.add_error(None,'Not Found User')
-                return render(request,'account/login.html',{'form':form})#cunki xetalar defaltda formun ozune mexsusdur buna gorede formu geiye dondermek lazimdir mecbur
+                return render(request,'account/login.html',{'form':form})
             
         else:
             return render(request,'account/login.html',{'form':form})
@@ -46,14 +45,14 @@ def registerView(request):
     if request.method == 'POST':
         form = RegisterUserForm(request.POST)
         if form.is_valid():
-            user = form.save()#burda save edende forms.py daki save metodu isleyecek
+            user = form.save()
             username = user.username
             password = form.cleaned_data.get('password1')
             user = authenticate(request,username=username,password=password)
             login(request,user)
             return redirect('index')
         else:
-            form.add_error(None,'Formu Eksizsiz Doldurun')#None vermemdeki sebeb form.add_errra butun input yerlerine aid olsun hemin xeta None verilerek
+            form.add_error(None,'Formu Eksizsiz Doldurun')
             return render(request,'account/register.html',{'form':form})
 
     #else ele buradir eger else yazsan program casag bilmeyecek hansi islesin    
@@ -80,7 +79,7 @@ def profileView(request):
             messages.add_message(request,messages.INFO,'Lutfen Bilgileriniz Kontrol Ediniz')
     else:
         user_form = UserForm(instance=request.user)
-        profile_form = ProfileForm(instance=request.user.auth)#yeni girisn eden istifadecinin profilini goster profil burda auth modelidir
+        profile_form = ProfileForm(instance=request.user.auth)
     return render(request,'account/profile.html',{'user_form':user_form,'profile_form':profile_form})
 
 
@@ -89,7 +88,7 @@ def changePasswordView(request):
         form = UserPasswordChange(request.user,request.POST or None)
         if form.is_valid():
             user = form.save()
-            update_session_auth_hash(request,user)#bura onemlidir,yeni upda elediyin formu gonder session yerineki cokkiesde deyissin
+            update_session_auth_hash(request,user)
             messages.add_message(request,messages.SUCCESS,'Parola Basarili Bir Sekilde Degistirildi')
             return redirect('change_password')
         else:

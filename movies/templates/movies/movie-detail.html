@@ -32,7 +32,7 @@
                                 <small class="text-muted">8,784</small>
                             </div>
                             <img src="{{movie_detail_slug.image_cover.url}}" class="img-fluid" alt="..." />
-                            <!-- add djangoya mexsusdur birlesdriirsen ele bil img tagi ile gelen sekil adini string birlestirme kimi -->
+                            
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3">
@@ -81,7 +81,6 @@
                                         <i class="fas fa-money-bill fa-sm fa-fw mr-1"></i> Filmin Bütçesi -
                                         <span class="text-white rounded px-2 py-1 bg-info">$
                                             {{ movie_detail_slug.budget|floatformat:0 }}</span>
-                                        <!--floatformat vasitesile yeni vergulden sonra nece dene ededn gorunmesine icaze verirsen floatformat ile-->
                                     </p>
                                 </div>
                                 <div class="col-lg-6 text-right">
@@ -130,13 +129,11 @@
                                     <h5 class="h6 mt-0 mb-3 font-weight-bold text-gray-900">
                                         CAST
                                     </h5>
-                                    <!-- !Bu hissede filmde oynayan OYUNCULARI gostermeliyik yalniz,buna gorede if serti qoymaliyig -->
                                     <div class="row">
                                         {% for people in peoples %}
                                         {% if people.duty_type == '2' %}
 
                                         <div class="artist-list mb-3 col-3">
-                                            <!-- col-3 yazdimki boostrapde ekran 12 yere bolunur yeni her rowda yeni her setirde 4 dene div olsun maksimuum 5 inci meselen yeni setire kecsin-->
                                             <a class="d-flex align-items-center" href="#">
                                                 <div class="dropdown-list-image mr-3">
                                                     <img class="rounded-circle"
@@ -146,7 +143,6 @@
                                                 </div>
                                                 <div class="font-weight-bold">
                                                     <div class="text-truncate">{{people.full_name}}</div>
-                                                    <!--Burdaki full_name bir propertyddir funksiya olsa bele biz onu property eledik yeni funksiyani bir deyisken kimi istfiade ede bilirik-->
                                                     <div class="small text-gray-500">Acting</div>
                                                 </div>
                                             </a>
@@ -158,11 +154,9 @@
                                 </div>
                                 <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="videos-tab">
                                     <div class="row">
-                                        <!--Cox vaxt ele rowun altinda yazilir for -->
                                         {% for video in videos %}
                                         <div class="col-xl-6 col-lg-6">
                                             <div class="mb-4">
-                                                <!--Djanda databaseden gelen melumati html lerde string bir parametre ala attribute icindede yazmag olar {{databasegelendeyer}} serti ile amma php daki kimi -->
                                                 <iframe width="100%" height="215"
                                                     src="https://www.youtube.com/embed/{{video.url}}" frameborder="0"
                                                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -177,7 +171,6 @@
                                         {% include "commentlist.html" %}
                                     </div>
 
-                                    <!-- !Send Comment,yorum yapmak -->
                                     <div class="p-4 bg-light rounded mt-4">
                                         {% include "addcomment.html" %}
                                     </div>

@@ -39,13 +39,13 @@
                                             {% csrf_token %}
                                             {{user_form.as_p}}
                                             {{profile_form.as_p}}
-                                            <button type="submit" class="btn btn-primary">Kaydet</button><!-- eger form icinde buton yazirsansa ve POST request atirsamnsa form ile bu butonun type mutleq sekilde submit olmalidir-->
+                                            <button type="submit" class="btn btn-primary">Kaydet</button>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
 
 
 {% block scripts %}
-    <script>
-        document.querySelectorAll('#sidebar-1 .nav-link')[0].classList.add('active')
-    </script>
+<script>
+    document.querySelectorAll('#sidebar-1 .nav-link')[0].classList.add('active')
+</script>
 {% endblock scripts %}

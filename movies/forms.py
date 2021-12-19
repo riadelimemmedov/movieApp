@@ -2,10 +2,10 @@ from django import forms
 from django.forms import fields,widgets
 from .models import *
 
-class CommentForm(forms.ModelForm):#ModelForm yazilmasindaki sebeb Databaseni forma cevireciyik ele bil,sifirdan bir form yaratmayaciyig,eger sifirdan bir form yaratsag forms.Form olardi,amma hal hazirda forms.ModelForm yazilir
+class CommentForm(forms.ModelForm):
     class Meta:
         
-        numbers = (#burda [] yazma hec baxt ic ice yaz ele bil tupleleari  amma list yazma choices de
+        numbers = (
             ('1','1 Yildiz'),
             ('2','2 Yildiz'),
             ('3','3 Yildiz'),

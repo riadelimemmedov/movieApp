@@ -27,11 +27,10 @@
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{request.user.username}}</span>
-                <!-- yeni hal hazirda giris eden istifadecini goster request.user.username -->
                 {% if request.user.auth.avatar %}
-                    <img class="img-profile rounded-circle" src="{{request.user.auth.avatar.url}}"><!--Cunki user modeli auth modelinde baglidir =>eger templatede modelin icine getmek isteyirnses modelin adini kicik herflerle yazmalisan-->
+                <img class="img-profile rounded-circle" src="{{request.user.auth.avatar.url}}">
                 {% else %}
-                    <img class="img-profile rounded-circle" src="{% static 'img/avatar.png' %}" alt="">
+                <img class="img-profile rounded-circle" src="{% static 'img/avatar.png' %}" alt="">
                 {% endif %}
             </a>
 

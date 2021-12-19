@@ -25,14 +25,14 @@ Register
                         </div>
 
                         <!-- ! Register Form-->
-                        <form  class="user" method="POST" novalidate>
+                        <form class="user" method="POST" novalidate>
                             {% csrf_token %}
 
                             <ul class="errorlist">
                                 {% for error in form.non_field_errors %}
-                                    <li>
-                                        {{error}}
-                                    </li>
+                                <li>
+                                    {{error}}
+                                </li>
                                 {% endfor %}
                             </ul>
 
@@ -62,10 +62,10 @@ Register
                                     {{form.password2}}
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-user btn-block"><!-- eger form icinde buton yazirsansa bu butonu typeni mutleq sekilde submit yazmalisanki form ile inputdan girilen deyerleri Databaseye gonderek-->
+                            <button type="submit" class="btn btn-primary btn-user btn-block">
                                 Register Account
                             </button>
-                    
+
                         </form>
                         <hr>
                         <div class="text-center">
@@ -83,8 +83,7 @@ Register
 {% endblock content %}
 
 {% block scripts %}
-    <script>
-        document.querySelector('body').classList.add('bg-gradient-primary')
-    </script>
+<script>
+    document.querySelector('body').classList.add('bg-gradient-primary')
+</script>
 {% endblock scripts %}
-

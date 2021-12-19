@@ -7,7 +7,7 @@ register = template.Library()
 def show_rating(countstar):
     html = ""
     
-    notcountstart = 5 - countstar#5 ulduz uzerinden oylama edirik ele bil
+    notcountstart = 5 - countstar
     
     for i in range(countstar):
         html += '<i class="fa fa-star active"></i>'
@@ -17,5 +17,5 @@ def show_rating(countstar):
     
     #bura ise butun hamsinda gorunecek
     html += f'<span class="rounded bg-warning text-dark pl-1 pr-1">5/{countstar}</span>'
-    return html#return unutma burda hemise yazilmalidirki html terefine gonderilsin yoxsa islemez html terefinde
+    return html
     
